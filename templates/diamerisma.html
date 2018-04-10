@@ -1,0 +1,24 @@
+{{define "title"}}
+Διαμέρισμα
+{{end}}
+{{define "content"}}
+<div class="container mt-4 text-center">
+  <h2>Καρτέλα διαμερίσματος</h2>
+                <div class="card mt-1">
+                    <div class="card-body">
+                      <h5 class="card-title">{{.Name}}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{.Dieythinsi}}</h6>
+                      <p class="card-text">{{.Perigrafi}}</p>
+                      <form action="/deletediamerisma" method="POST">
+                        <input type="hidden" name="iddiamerisma" value="{{.ID}}">
+                        <button type="submit" class="btn btn-danger mb-2" data-toggle="tooltip" data-placement="bottom" title="Διαγραφή">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        </form>
+                        <div class="mt-1 card-footer text-muted">
+                        {{.IdioktitisObj.Name}} {{.IdioktitisObj.Surname}}, {{.IdioktitisObj.Phone}}
+                      </div>
+                    </div>
+                  </div>
+</div>
+{{end}}

@@ -1,0 +1,26 @@
+{{define "title"}}
+Ενημέρωση εργοδότη
+{{end}}
+{{define "content"}}
+<div class="container mt-4">
+        <h2>Επεξεργασία εργοδότη</h2>
+        <div class="form">
+                <form class="form-horizontal" method="POST" action="/updateergodoti" id="updateergodoti">
+                    <input type="hidden" value="{{.ID}}" name="idergodoti">
+                    <div class="form-group">
+                            <label class="control-label">Όνομα: </label>
+                            <input class="form-control" type="text" name="name" disabled value="{{.Name}}">
+                        </div>
+                    <div class="form-group">
+                            <label class="control-label">Επίθετο: </label>
+                            <input class="form-control" type="text" name="surname" disabled value="{{.Surname}}">
+                    </div>
+                    <div class="form-group"> 
+                            <label class="control-label">Τηλέφωνο :</label>
+                            <input class="form-control" type="text" name="phone" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ενημέρωση</button>
+                </form>
+            </div>
+</div>
+{{end}}

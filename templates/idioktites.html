@@ -1,0 +1,54 @@
+{{define "title"}}
+Ιδιοκτήτες
+{{end}}
+{{define "content"}}
+<div class="container mt-4">
+<div class="form">
+        <form class="form-horizontal" method="POST" action="/createidioktiti">
+            <h2>Νέος ιδιοκτήτης</h2>
+            <div class="form-group">
+                    <label class="control-label">Όνομα: </label>
+                    <input class="form-control" type="text" name="name" required>
+                </div>
+            <div class="form-group">
+                    <label class="control-label">Επίθετο: </label>
+                    <input class="form-control" type="text" name="surname" required>
+            </div>
+            <div class="form-group"> 
+                    <label class="control-label">Τηλέφωνο: </label>
+                    <input class="form-control" type="text" name="phone" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Καταχώρηση</button>
+        </form>
+    </div>
+<div class="mt-4">
+    <h2>Πίνακας ιδιοκτητών</h2>
+    <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Επίθετο</th>
+                <th>Όνομα</th>
+                <th>Τηλέφωνο</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+            {{range .Idioktites}}
+              <tr>
+                <td><a href="/idioktitis?id={{.ID}}">{{.Surname}}</a></td>
+                <td>{{.Name}}</td>
+                <td>{{.Phone}}</td>
+                <td>
+                    <form action="/deleteidioktiti" method="POST">
+                        <input name="ididioktiti" type="hidden" value="{{.ID}}">
+                        <button class="btn btn-danger" type="submit" data-toggle="tooltip" data-placement="bottom" title="Διαγραφή">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            {{end}}
+            </tr>
+    </table>
+</div>
+</div>
+{{end}}

@@ -1,0 +1,42 @@
+{{define "title"}}
+Εργοδότες
+{{end}}
+{{define "content"}}
+<div class="container mt-4">
+        <div class="form">
+                <form class="form-horizontal" method="POST" action="/createergodoti" id="creatediamerisma">
+                    <h2>Νέος εργοδότης</h2>
+                    <div class="form-group">
+                            <label class="control-label">Όνομα: </label>
+                            <input class="form-control" type="text" name="name" required>
+                        </div>
+                    <div class="form-group">
+                            <label class="control-label">Επίθετο: </label>
+                            <input class="form-control" type="text" name="surname" required>
+                    </div>
+                    <div class="form-group"> 
+                            <label class="control-label">Τηλέφωνο :</label>
+                            <input class="form-control" type="text" name="phone" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Καταχώρηση</button>
+                </form>
+            </div>
+<br>
+<div class=data-table>
+    <h2>Πίνακας εργοδοτών</h2>
+    <div class="row">
+    {{range .Ergodotes}}
+    <div class="col-sm-4">
+        <div class="card mt-1" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><a href="/ergodotis?id={{.ID}}">{{.Name}} {{.Surname}}</a></h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{.Phone}}</h6>
+              <p class="card-text">Υπόλοιπο: <h3>{{.Poso}}</h3></p>
+            </div>
+          </div>
+        </div>
+    {{end}}
+    </div>
+    </div>
+</div>
+{{end}}

@@ -1,0 +1,53 @@
+{{define "title"}}
+Διαμερίσματα
+{{end}}
+{{define "content"}}
+<div class="container mt-4">
+<div class="form">
+    <form class="form-horizontal" method="POST" action="/creatediamerisma" id="creatediamerisma">
+        <h2>Νέο διαμέρισμα</h2>
+        <div class="form-group">
+            <label class="control-label">Όνομα: </label>
+            <input class="form-control" type="text" name="name" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Ιδιοκτήτης: </label>
+            <select class="form-control custom-select" name="idioktitis" required>
+            {{range .Idioktites}}
+                <option value="{{.ID}}">{{.Name}} {{.Surname}}</option>
+            {{end}}
+            </select>
+        </div>
+        <div class="form-group"> 
+            <label class="control-label">Διεύθυνση: </label>
+            <input class="form-control" type="text" name="dieythinsi" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Περιγραφή: </label>
+            <input class="form-control" type="textbox" name="perigrafi" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Καταχώρηση</button>
+    </form>
+</div>
+<br>
+<div class="container">
+    <h2>Διαμερίσματα</h2>
+    <div class="row">
+    {{range .Diamerismata}}
+    <div class="col-sm-4">
+    <div class="card mt-1" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><a href="/diamerisma?id={{.ID}}">{{.Name}}</a></h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{.Dieythinsi}}</h6>
+          <p class="card-text">{{.Perigrafi}}</p>
+            <div class="mt-1 card-footer text-muted">
+            {{.IdioktitisObj.Name}} {{.IdioktitisObj.Surname}}, {{.IdioktitisObj.Phone}}
+          </div>
+        </div>
+      </div>
+    </div>
+      {{end}}
+    </div>
+</div>
+</div>
+{{end}}

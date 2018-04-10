@@ -1,0 +1,74 @@
+{{define "title"}}
+Καλώς όρισες
+{{end}}
+{{define "content"}}
+<div class="container mt-4 text-center">
+    {{if not .}}
+    <h2>Καλώς όρισες</h2>
+    <p>Κάνε μία αναζήτηση, ή περιγιήσου μέσω των συνδέσμων στο πάνω μέρος της οθόνης.</p>
+    {{end}}
+</div>
+<div class="container">
+    {{if .}}
+        <h2>Αποτελέσματα</h2>
+        {{if .Idioktites}}
+            <h3>Ιδιοκτήτες</h3>
+            <div class="mt-4">
+                    <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>Επίθετο</th>
+                                <th>Όνομα</th>
+                                <th>Τηλέφωνο</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {{range .Idioktites}}
+                              <tr>
+                                <td><a href="/idioktitis?id={{.ID}}">{{.Surname}}</a></td>
+                                <td>{{.Name}}</td>
+                                <td>{{.Phone}}</td>
+                            {{end}}
+                            </tr>
+                    </table>
+                </div>
+        {{end}}
+        {{if .Diamerismata}}
+            <h3>Διαμερίσματα</h3>
+            <div class="row">
+                {{range .Diamerismata}}
+                <div class="col-sm-4">
+                    <div class="card mt-1" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="/diamerisma?id={{.ID}}">{{.Name}}</a></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{.Dieythinsi}}</h6>
+                            <p class="card-text">{{.Perigrafi}}</p>
+                              <div class="mt-1 card-footer text-muted">
+                              {{.IdioktitisObj.Name}} {{.IdioktitisObj.Surname}}, {{.IdioktitisObj.Phone}}
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        {{end}}
+        {{if .Ergodotes}}
+            <h3>Εργοδότες</h3>
+            <div class="row">
+                    {{range .Ergodotes}}
+                    <div class="col-sm-4">
+                        <div class="card mt-1" style="width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title"><a href="/ergodotis?id={{.ID}}">{{.Name}} {{.Surname}}</a></h5>
+                              <h6 class="card-subtitle mb-2 text-muted">{{.Phone}}</h6>
+                              <p class="card-text">Υπόλοιπο: <h3>{{.Poso}}</h3></p>
+                            </div>
+                          </div>
+                        </div>
+                    {{end}}
+                    </div>
+                    
+        {{end}}
+    {{end}}
+</div>
+{{end}}

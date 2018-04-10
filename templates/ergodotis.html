@@ -1,0 +1,59 @@
+{{define "title"}} 
+{{.Surname}} 
+{{end}} 
+{{define "content"}}
+<div class="container mt-4 text-center">
+        <h2>Καρτέλα εργοδότη
+        </h2>
+        <div class="card mt-1">
+            <div class="card-body">
+              <h5 class="card-title">{{.Name}} {{.Surname}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{.Phone}}</h6>
+              <p class="card-text">Υπόλοιπο:<h3>{{.Poso}}</h3></p>
+
+              <div class="mt-1">
+                    <form method="POST" action="/updateergodotiposo" id="updateposo">
+                        <input type="hidden" name="idergodoti" value="{{.ID}}">
+                        <input type="number" name="poso" step="0.1" required>
+                    </form>
+                    <form method="POST" action="/deleteergodoti" id="delete">
+                        <input type="hidden" name="idergodoti" value="{{.ID}}">
+                    </form>
+                    <div class="d-inline">
+                        <button form="updateposo" type="submit" class="btn btn-primary mt-1" data-toggle="tooltip" data-placement="bottom" title="Ενημέρωση ποσού">
+                            <span>Ενημέρωση</span>
+                        </button>
+                        <a href="/updateergodoti?id={{.ID}}" class=" mt-1 btn btn-info" role="button" data-toggle="tooltip" data-placement="bottom" title="Επεξεργασία εργοδότη">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <button form="delete" type="submit" class="btn btn-danger mt-1" data-toggle="tooltip" data-placement="bottom" title="Διαγραφή εργοδότη">
+                            <span>
+                                <i class="fa fa-trash"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+          </div>
+</div>
+<div class="form mt-1">
+    <form class="form-horizontal" method="POST" action="/createxrewsi">
+        <h2>Nέα χρέωση</h2>
+        <div class="form-group">
+            <label class="control-label">Ποσό: </label>
+            <input class="form-control" type="number" step="0.1" name="poso" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Ημερομηνία: </label>
+            <input class="form-control" type="text" id="datepicker" name="workdate" required>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Αιτιολογία: </label>
+            <input class="form-control" type="text" name="aitiologia" required>
+        </div>
+        <input type="hidden" name="xrewstis" value="{{.ID}}">
+        <button type="submit" class="btn btn-primary">Καταχώρηση</button>
+    </form>
+</div>
+</div>
+{{end}}
